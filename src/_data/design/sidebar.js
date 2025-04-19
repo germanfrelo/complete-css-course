@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	linkGroups: [
 		{
 			title: "Design Tokens",

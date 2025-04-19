@@ -1,11 +1,11 @@
-const colors = require("../../design-tokens/colors.json");
-const fonts = require("../../design-tokens/fonts.json");
-const spacing = require("../../design-tokens/spacing.json");
-const textSizes = require("../../design-tokens/text-sizes.json");
-const textLeading = require("../../design-tokens/text-leading.json");
-const textWeights = require("../../design-tokens/text-weights.json");
+import colors from "../../design-tokens/colors.json" with { type: "json" };
+import fonts from "../../design-tokens/fonts.json" with { type: "json" };
+import spacing from "../../design-tokens/spacing.json" with { type: "json" };
+import textLeading from "../../design-tokens/text-leading.json" with { type: "json" };
+import textSizes from "../../design-tokens/text-sizes.json" with { type: "json" };
+import textWeights from "../../design-tokens/text-weights.json" with { type: "json" };
 
-module.exports = () => {
+export default () => {
 	return {
 		colors: colors.items,
 		textSizes: textSizes.items,

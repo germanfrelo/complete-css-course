@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const chalk = require("chalk");
+import chalk from "chalk";
+import fs from "fs";
+import path from "path";
 
 const baseIndex = process.argv.indexOf("-b");
 const pathIndex = process.argv.indexOf("-p");
@@ -50,7 +50,7 @@ if (pathIndex > 0 && nameIndex > 0) {
 	fs.writeFileSync(
 		path.join(...[...basePath, `${name}.json`]),
 		`
-{ 
+{
   "title": "${title || name}",
   "context": {
   }

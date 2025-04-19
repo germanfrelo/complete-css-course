@@ -1,24 +1,24 @@
 // Reference:
 // https://piccalil.li/blog/a-css-project-boilerplate/
 
-const plugin = require("tailwindcss/plugin");
-const postcss = require("postcss");
-const postcssJs = require("postcss-js");
+import postcss from "postcss";
+import postcssJs from "postcss-js";
+import plugin from "tailwindcss/plugin";
 
 // Generates Utopia-like CSS clamp values for fluid type and space
-const clampGenerator = require("./src/css-utils/clamp-generator.js");
+import clampGenerator from "./src/css-utils/clamp-generator.js";
 
 // Converts whatever format the project's design tokens are in, into Tailwind friendly configuration objects
-const tokensToTailwind = require("./src/css-utils/tokens-to-tailwind.js");
+import tokensToTailwind from "./src/css-utils/tokens-to-tailwind.js";
 
 // Raw design tokens
-const colorTokens = require("./src/design-tokens/colors.json");
-const fontTokens = require("./src/design-tokens/fonts.json");
-const fontLeadingTokens = require("./src/design-tokens/text-leading.json");
-const textSizeTokens = require("./src/design-tokens/text-sizes.json");
-const fontWeightTokens = require("./src/design-tokens/text-weights.json");
-const spacingTokens = require("./src/design-tokens/spacing.json");
-const viewportTokens = require("./src/design-tokens/viewports.json");
+import colorTokens from "./src/design-tokens/colors.json" with { type: "json" };
+import fontTokens from "./src/design-tokens/fonts.json" with { type: "json" };
+import spacingTokens from "./src/design-tokens/spacing.json" with { type: "json" };
+import fontLeadingTokens from "./src/design-tokens/text-leading.json" with { type: "json" };
+import textSizeTokens from "./src/design-tokens/text-sizes.json" with { type: "json" };
+import fontWeightTokens from "./src/design-tokens/text-weights.json" with { type: "json" };
+import viewportTokens from "./src/design-tokens/viewports.json" with { type: "json" };
 
 // Process design tokens
 const colors = tokensToTailwind(colorTokens.items);
@@ -28,6 +28,7 @@ const fontSize = tokensToTailwind(clampGenerator(textSizeTokens.items));
 const fontWeight = tokensToTailwind(fontWeightTokens.items);
 const spacing = tokensToTailwind(clampGenerator(spacingTokens.items));
 
+/** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./src/**/*.{html,js,jsx,mdx,njk,twig,vue,json}"],
 	// Add color classes to safe list so they are always generated
