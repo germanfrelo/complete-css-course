@@ -14,7 +14,7 @@
 	},
 	"license": "MIT",
 	"author": "Germán Freixinós",
-	"type": "commonjs",
+	"type": "module",
 	"main": "",
 	"scripts": {
 		"format": "prettier --write .",
