@@ -5,7 +5,10 @@ export default [
 	{
 		languageOptions: {
 			// Enable all predefined browser global variables
-			globals: globals.browser,
+			globals: {
+				...globals.browser,
+				...globals.node,
+			},
 		},
 	},
 	// ESLint's predefined config that enables its recommended rules
