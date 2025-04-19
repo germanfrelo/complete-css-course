@@ -28,7 +28,7 @@ const fontSize = tokensToTailwind(clampGenerator(textSizeTokens.items));
 const fontWeight = tokensToTailwind(fontWeightTokens.items);
 const spacing = tokensToTailwind(clampGenerator(spacingTokens.items));
 
-module.exports = {
+export default {
 	content: ["./src/**/*.{html,js,jsx,mdx,njk,twig,vue,json}"],
 	// Add color classes to safe list so they are always generated
 	safelist: [],
