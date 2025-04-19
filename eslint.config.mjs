@@ -11,6 +11,9 @@ export default [
 	// ESLint's predefined config that enables its recommended rules
 	js.configs.recommended,
 	{
-		ignores: ["*.min.*"], // Ignore minified files
+		ignores: [
+			"dist/", // Build output directory
+			"*.min.*", // Minified files
+		],
 	},
 ];

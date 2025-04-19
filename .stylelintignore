@@ -2,5 +2,8 @@
 # - https://stylelint.io/user-guide/configure#ignorefiles
 # - https://stylelint.io/user-guide/ignore-code#files-entirely
 
+# Build output directory
+dist/
+
 # Minified files
 **/*.min.*
