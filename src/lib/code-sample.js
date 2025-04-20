@@ -1,10 +1,13 @@
-/* global __basedir */
+import chalk from "chalk";
+import fs from "fs";
+import markdownIt from "markdown-it";
+import nunjucks from "nunjucks";
+import path from "path";
 
-const chalk = require("chalk");
-const nunjucks = require("nunjucks");
-const fs = require("fs");
-const path = require("path");
-const md = require("markdown-it")();
+// Get the project root directory path from this file's location (src/lib/)
+const projectRootDir = path.join(import.meta.dirname, "..", "..");
+
+const md = markdownIt();
 
 // Set up the chalk warning and error state
 const warning = chalk.black.bgYellow;
@@ -12,7 +15,7 @@ const error = chalk.black.bgRed;
 
 // Set up custom nunjucks environment and add custom parts
 const nunjucksEnv = new nunjucks.Environment(
-	new nunjucks.FileSystemLoader(path.join(__basedir, "src", "_includes")),
+	new nunjucks.FileSystemLoader(path.join(projectRootDir, "src", "_includes")),
 );
 
 class CodeSample {
@@ -39,7 +42,7 @@ class CodeSample {
 			return this.processedItems;
 		}
 
-		const basePath = path.join(__basedir, "src", this.samplePath);
+		const basePath = path.join(projectRootDir, "src", this.samplePath);
 
 		// Windows uses back slashes which breaks everything
 		let characterSplit = basePath.includes("\\") ? "\\" : "/";
@@ -344,4 +347,4 @@ class CodeSample {
 	}
 }
 
-module.exports = CodeSample;
+export default CodeSample;

@@ -1,6 +1,6 @@
-const CodeSample = require("../../lib/code-sample.js");
+import CodeSample from "../../lib/code-sample.js";
 
-module.exports = new CodeSample(
+export default new CodeSample(
 	"/pattern-library/patterns",
 	"/pattern-library/pattern",
 	"/pattern-library/pattern-preview",
