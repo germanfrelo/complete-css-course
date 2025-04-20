@@ -153,7 +153,7 @@ class CodeSample {
 		const buildCodeSampleData = (input, filePath) => {
 			try {
 				return JSON.parse(input);
-			} catch {
+			} catch (ex) {
 				console.log(
 					error(
 						`CodeSample data was malformed and couldn’t be parsed (${filePath})`,
