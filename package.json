@@ -55,7 +55,7 @@
 		"@11ty/eleventy": "3.0.0",
 		"chalk": "4.1.2",
 		"clean-css": "5.3.3",
-		"concurrently": "8.2.2",
+		"concurrently": "9.1.2",
 		"cssnano": "7.0.7",
 		"postcss": "8.5.3",
 		"postcss-cli": "11.0.1",
