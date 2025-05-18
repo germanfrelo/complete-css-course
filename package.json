@@ -18,7 +18,7 @@
 	"main": "",
 	"scripts": {
 		"build": "npm run clean && eleventy && NODE_ENV=production npm run css",
-		"clean": "rm -r -f dist && mkdir dist",
+		"clean": "rimraf dist && mkdir dist",
 		"css": "npx postcss src/css/*.css --dir dist/css",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
@@ -74,6 +74,7 @@
 		"markdownlint-cli2": "0.18.1",
 		"postcss-nesting": "13.0.1",
 		"prettier": "3.5.3",
+		"rimraf": "6.0.1",
 		"stylelint": "16.19.1",
 		"stylelint-config-recess-order": "6.0.0",
 		"stylelint-config-standard": "38.0.0",
