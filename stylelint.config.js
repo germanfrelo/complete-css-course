@@ -65,4 +65,11 @@ export default {
 			},
 		],
 	},
+	ignoreFiles: [
+		// See https://stylelint.io/user-guide/configure#ignorefiles
+		"node_modules/",
+		"**/*.min.*",
+		"dist/**/*.css",
+		"src/css/global.css",
+	],
 };
