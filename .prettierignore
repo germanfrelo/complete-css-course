@@ -9,3 +9,6 @@
 
 # Minified files
 **/*.min.*
+
+# Build output
+dist/
