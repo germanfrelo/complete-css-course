@@ -16,7 +16,7 @@ export default {
 		// Descending
 		"no-descending-specificity": [
 			true, // Already enabled in stylelint-config-recommended
-			{ severity: "warning" }, // Default is 'error', but I prefer 'warning'
+			{ severity: "warning" }, // Relax the default 'error' severity level because this rule has limitations
 		],
 		// Duplicate
 		"font-family-no-duplicate-names": [
@@ -40,8 +40,14 @@ export default {
 		],
 		// Empty lines
 		"declaration-empty-line-before": "never",
-		// Notation
-		"media-feature-range-notation": null, // TODO: Remove when 'baseline' is 'widely available' (~96%) (https://caniuse.com/css-media-range-syntax)
+		// Max & min
+		"max-nesting-depth": [
+			4,
+			{
+				severity: "warning",
+				ignore: ["blockless-at-rules", "pseudo-classes"],
+			},
+		],
 		// Pattern
 		"custom-property-pattern": null,
 		"selector-class-pattern": null,
@@ -56,13 +62,20 @@ export default {
 			{
 				"severity": "warning",
 				"accidental-hover": false, // Enable as needed
-				"background-repeat": false, // The imported CSS reset already apply 'no-repeat' to all elements
-				"custom-property-fallbacks": true,
-				"flex-wrapping": true,
+				"background-repeat": false, // The project CSS reset already add 'no-repeat' to all elements
+				"custom-property-fallbacks": false, // Enable as needed
+				"flex-wrapping": false, // Enable as needed
 				"scroll-chaining": true,
 				"scrollbar-gutter": false, // Enable as needed
 				"vendor-prefix-grouping": true,
 			},
 		],
 	},
+	ignoreFiles: [
+		// See https://stylelint.io/user-guide/configure#ignorefiles
+		"node_modules/",
+		"**/*.min.*",
+		"dist/**/*.css",
+		"src/css/global.css",
+	],
 };
