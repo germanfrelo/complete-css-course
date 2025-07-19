@@ -73,7 +73,7 @@
 		"lint-staged": "16.1.2",
 		"markdownlint-cli2": "0.18.1",
 		"postcss-nesting": "13.0.1",
-		"prettier": "3.5.3",
+		"prettier": "3.6.2",
 		"rimraf": "6.0.1",
 		"stylelint": "16.19.1",
 		"stylelint-config-recess-order": "6.0.0",
