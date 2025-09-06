@@ -58,7 +58,7 @@
 		"chalk": "4.1.2",
 		"clean-css": "5.3.3",
 		"concurrently": "9.1.2",
-		"cssnano": "7.1.0",
+		"cssnano": "7.1.1",
 		"eslint": "9.34.0",
 		"globals": "16.3.0",
 		"husky": "9.1.7",
