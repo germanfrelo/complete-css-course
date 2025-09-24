@@ -28,17 +28,12 @@ export default {
 		// Unknown
 		"no-unknown-animations": true,
 		"no-unknown-custom-media": true,
-		"no-unknown-custom-properties": true,
 
 		/* Enforce conventions
 		(overrides rules from stylelint-config-standard)
 		---------------------------------------- */
-		// Allowed, disallowed & required
-		"property-no-vendor-prefix": [
-			true,
-			{ ignoreProperties: ["text-size-adjust"] }, // Don't report the '-webkit-text-size-adjust' property used in the imported CSS reset
-		],
 		// Empty lines
+		"comment-empty-line-before": null,
 		"declaration-empty-line-before": "never",
 		// Max & min
 		"max-nesting-depth": [
