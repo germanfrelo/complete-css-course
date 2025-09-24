@@ -60,7 +60,7 @@ body:has(.pattern-library) {
 .pattern-library__preview-frame {
 	width: 100%;
 	min-height: 25rem;
-	resize: auto;
+	resize: both;
 	border: var(--stroke);
 }
 
