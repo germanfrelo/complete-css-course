@@ -1,15 +1,18 @@
 /*
-VISUALLY HIDDEN UTILITY
-Info: https://piccalil.li/quick-tip/visually-hidden/
+Hide elements visually, but keep them programmatically available.
+Refs.:
+- https://www.matuzo.at/blog/2023/zero-width-height-skip/
+- https://www.scottohara.me/blog/2023/03/21/visually-hidden-hack.html
+- https://www.tpgi.com/the-anatomy-of-visually-hidden/
 */
-.visually-hidden {
-	position: absolute; /* Removes the element from the normal document flow so it doesn't affect layout. */
-	width: 1px; /* Shrinks the element to a tiny, non-intrusive size. */
-	height: 1px; /* ^ */
-	padding: 0; /* Removes any interior spacing. */
-	margin: -1px; /* Pulls the 1x1px box out of view to prevent visual artifacts. */
-	overflow: hidden; /* Hides any content that might overflow the 1x1px box. */
-	white-space: nowrap; /* Prevents text from wrapping to a new line. */
-	border: 0; /* Removes any border. */
-	clip-path: inset(50%); /* Clips the content, making the element invisible. */
+.visually-hidden:not(:is(:active, :focus, :focus-within)) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	border: 0;
+	clip-path: inset(50%);
 }
