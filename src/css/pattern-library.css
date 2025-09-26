@@ -76,7 +76,7 @@ body:has(.pattern-library) {
 	letter-spacing: var(--uppercase-kerning);
 }
 
-.pattern-library__nav a:not([aria-current], :hover) {
+.pattern-library__nav a:not(:is([aria-current], :hover)) {
 	text-decoration: none;
 }
 
