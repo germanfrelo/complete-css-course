@@ -97,11 +97,13 @@ When scrolling to target elements, a reasonable spacing is added above them to e
 /*
 1. Make 'body' at least as tall as the viewport height (requires 'html { block-size: 100%; }', see 'html' rule above). Ref. https://codepen.io/germanfrelo/pen/jOGNpbj
 2. Remove the default 8px margin from 'body', which is usually not wanted, in favor of better control in authored CSS.
+3. Ensure visual consistency by making the height of lowercase letters in fallback fonts match the primary font. (E.g., it keeps code blocks <code> a more in-proportion size based on the base font.)
 */
 
 body {
 	min-block-size: 100%; /* 1 */
 	margin: 0; /* 2 */
+	font-size-adjust: from-font; /* 3 */
 }
 
 /* ======================================================================
