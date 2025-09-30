@@ -40,14 +40,16 @@
 		"stylelint-config-standard": "39.0.0",
 		"stylelint-order": "7.0.0",
 		"stylelint-plugin-defensive-css": "1.0.4",
+		"svgo": "4.0.0",
 		"tailwindcss": "3.3.5"
 	},
 	"scripts": {
-		"build": "npm run clean && eleventy && NODE_ENV=production npm run build:css",
+		"build": "npm run clean && eleventy && NODE_ENV=production npm run build:css && npm run format:svg",
 		"build:css": "rimraf dist/css && postcss src/css/*.css --dir dist/css",
 		"clean": "rimraf dist && mkdir dist",
-		"format": "prettier --write .",
+		"format": "prettier --write . && npm run format:svg",
 		"format:check": "prettier --check .",
+		"format:svg": "svgo --folder assets/svg",
 		"lint": "npm run lint:css && npm run lint:js && npm run lint:md",
 		"lint:css": "stylelint --formatter verbose \"**/*.css\"",
 		"lint:css:fix": "npm run lint:css -- --fix",
