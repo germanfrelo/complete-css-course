@@ -8,7 +8,7 @@
 	"homepage": "https://github.com/germanfrelo/complete-css-course#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/germanfrelo/complete-css-course.git"
+		"url": "git+https://github.com/germanfrelo/complete-css-course.git"
 	},
 	"bugs": "https://github.com/germanfrelo/complete-css-course/issues",
 	"type": "module",
