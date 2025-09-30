@@ -53,22 +53,52 @@ figure {
 ====================================================================== */
 
 /* ----------------------------------------------------------------------
+Body
+---------------------------------------------------------------------- */
+
+body {
+	font-family: var(--font-base);
+	font-size: var(--size-step-1);
+	line-height: var(--leading-standard);
+	color: var(--color-primary);
+	background-color: var(--color-dark);
+}
+
+/* ----------------------------------------------------------------------
 Headings
 ---------------------------------------------------------------------- */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	line-height: 1.1;
+:is(h1, h2, h3, h4) {
+	line-height: var(--leading-fine);
 	text-wrap: balance;
+}
+
+h1 {
+	max-inline-size: 20ch;
+	font-size: var(--size-step-6);
+}
+
+h2 {
+	max-inline-size: 35ch;
+	font-size: var(--size-step-5);
+}
+
+h3 {
+	max-inline-size: 35ch;
+	font-size: var(--size-step-4);
+}
+
+:is(h4, h5, h6) {
+	font-size: var(--size-step-3);
 }
 
 /* ======================================================================
 03. Grouping Content
 ====================================================================== */
+
+/* ----------------------------------------------------------------------
+Description List
+---------------------------------------------------------------------- */
 
 /* ----------------------------------------------------------------------
 Ordered & Unordered Lists
@@ -84,12 +114,102 @@ Refs.:
 	list-style-type: none;
 }
 
+ul:not([class]) {
+	padding-inline-start: 1.7ch;
+	/* list-style-type: disc; */
+}
+
+ul:not([class]) > li {
+	padding-inline-start: var(--space-xs);
+}
+
+:is(ol, ul):not([class]) li + * {
+	margin-block-start: var(--flow-space, var(--space-xs));
+}
+
+ul ::marker {
+	font-size: 0.8lh;
+}
+
+ol ::marker {
+	font-size: 1em;
+	font-weight: var(--font-bold);
+}
+
+/* ----------------------------------------------------------------------
+Blockquote
+---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------
+Preformatted Text
+---------------------------------------------------------------------- */
+
+pre:has(code) {
+	inline-size: max-content;
+	max-inline-size: 100%;
+}
+
+/* ----------------------------------------------------------------------
+Thematic Break (Horizontal Rule)
+---------------------------------------------------------------------- */
+
 /* ======================================================================
 04. Inline Text Semantics
 ====================================================================== */
 
 a:not([class]) {
 	color: currentcolor;
+}
+
+small {
+	font-size: var(--size-step-0);
+}
+
+ins {
+	padding-inline: 0.3em;
+	color: var(--color-dark);
+	text-decoration-line: none;
+	background-color: var(--color-primary);
+}
+
+:is(code, kbd, samp) {
+	padding-block: 0.2em 0.05em;
+	padding-inline: 0.2em;
+	font-family: var(--font-mono);
+	text-align: start;
+	word-spacing: normal;
+	hyphens: none;
+	word-break: normal;
+	overflow-wrap: normal;
+	box-decoration-break: clone;
+}
+
+/* This is quite a new property, so we want code styles to at least, not be huge or tiny */
+@supports not (font-size-adjust: from-font) {
+	:is(code, kbd, samp) {
+		font-size: 0.8em;
+	}
+}
+
+/* Undo some of the previous styles */
+pre code {
+	padding: 0;
+	background: none;
+	border: none;
+}
+
+kbd {
+	padding-block-end: 0.1em;
+	border: 1px solid;
+}
+
+var {
+	font-style: normal;
+	font-weight: var(--font-medium);
+}
+
+q {
+	font-style: italic;
 }
 
 /* ======================================================================
