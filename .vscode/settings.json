@@ -7,6 +7,11 @@
 	},
 	"editor.formatOnSave": true,
 
+	// JSON
+	"colorize.include": ["**/*.json"],
+	"colorize.languages": ["json"],
+	"colorize.colorized_colors": ["HEXA", "RGB", "HSL", "OKLAB", "OKLCH"],
+
 	// Lint CSS with Stylelint
 	// Disable VS Code's built-in linters to prevent them from reporting the same errors as Stylelint
 	"stylelint.enable": true, // default
