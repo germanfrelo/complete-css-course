@@ -49,7 +49,7 @@
 		"clean": "rimraf dist && mkdir dist",
 		"format": "prettier --write . && npm run format:svg",
 		"format:check": "prettier --check .",
-		"format:svg": "svgo --folder assets/svg",
+		"format:svg": "svgo --folder src/_includes/icons",
 		"lint": "npm run lint:css && npm run lint:js && npm run lint:md",
 		"lint:css": "stylelint --formatter verbose \"**/*.css\"",
 		"lint:css:fix": "npm run lint:css -- --fix",
