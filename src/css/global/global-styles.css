@@ -11,26 +11,24 @@ Selectors are grouped and sorted based on:
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements
 - https://html.spec.whatwg.org/multipage/#toc-semantics
 
-Table of contents:
-01. Document/Global
-02. Sections
-03. Grouping Content
-04. Inline Text Semantics
-05. Embedded Content
-06. Tables
-07. Form Controls
-08. Interactive Elements
-09. Focus Indicators
+Table of Contents:
+01. Resets
+02. Document
+03. Content Sectioning
+04. Grouping Content
+05. Inline Text Semantics
+06. Embedded Content
+07. Tables
+08. Form Controls
+09. Interactive Elements
+10. Focus Indicators
 ====================================================================== */
 
 /* ======================================================================
-01. Document/Global
+01. Resets
 ====================================================================== */
 
-/*
-Remove default block margins in favour of better control in authored CSS.
-*/
-
+/* Remove default block margins in favour of better control in authored CSS. */
 h1,
 h2,
 h3,
@@ -49,24 +47,29 @@ figure {
 }
 
 /* ======================================================================
-02. Sections
+02. Document
 ====================================================================== */
 
-/* ----------------------------------------------------------------------
-Body
----------------------------------------------------------------------- */
+html {
+	/* No styles */
+}
 
 body {
-	font-family: var(--font-base);
+	font-family: var(--font-base, sans-serif);
 	font-size: var(--size-step-1);
 	line-height: var(--leading-standard);
 	color: var(--color-primary);
 	background-color: var(--color-dark);
 }
 
-/* ----------------------------------------------------------------------
-Headings
----------------------------------------------------------------------- */
+::selection {
+	color: var(--color-dark);
+	background: var(--color-light);
+}
+
+/* ======================================================================
+03. Content Sectioning
+====================================================================== */
 
 :is(h1, h2, h3, h4) {
 	line-height: var(--leading-fine);
@@ -93,12 +96,41 @@ h3 {
 }
 
 /* ======================================================================
-03. Grouping Content
+04. Grouping Content
 ====================================================================== */
 
 /* ----------------------------------------------------------------------
-Description List
+Thematic Break (Horizontal Rule)
 ---------------------------------------------------------------------- */
+
+hr {
+	margin-block: var(--flow-space, var(--space-xl));
+	border-block-start: var(--stroke);
+}
+
+/* ----------------------------------------------------------------------
+Preformatted Text
+---------------------------------------------------------------------- */
+
+pre:has(code) {
+	inline-size: max-content;
+	max-inline-size: 100%;
+}
+
+/* ----------------------------------------------------------------------
+Blockquote
+---------------------------------------------------------------------- */
+
+blockquote {
+	margin-inline: 0;
+	color: var(--color-light);
+
+	footer {
+		margin-block-start: var(--space-s);
+		font-size: var(--size-step-0);
+		color: var(--color-primary);
+	}
+}
 
 /* ----------------------------------------------------------------------
 Ordered & Unordered Lists
@@ -111,16 +143,16 @@ Refs.:
 - https://www.matuzo.at/blog/2023/removing-list-styles-without-affecting-semantics
 */
 :is(ol, ul):where([role="list"]) {
-	list-style-type: none;
+	list-style-type: "";
 }
 
 ul:not([class]) {
 	padding-inline-start: 1.7ch;
-	/* list-style-type: disc; */
-}
+	list-style-type: disc;
 
-ul:not([class]) > li {
-	padding-inline-start: var(--space-xs);
+	> li {
+		padding-inline-start: var(--space-xs);
+	}
 }
 
 :is(ol, ul):not([class]) li + * {
@@ -136,29 +168,63 @@ ol ::marker {
 	font-weight: var(--font-bold);
 }
 
-/* ----------------------------------------------------------------------
-Blockquote
----------------------------------------------------------------------- */
-
-/* ----------------------------------------------------------------------
-Preformatted Text
----------------------------------------------------------------------- */
-
-pre:has(code) {
-	inline-size: max-content;
-	max-inline-size: 100%;
+/* Lists with classes and roles will be out of standard flow, so remove the default spacing */
+[role="list"][class],
+[role="tablist"][class] {
+	padding: 0;
+	margin-block: 0;
 }
 
 /* ----------------------------------------------------------------------
-Thematic Break (Horizontal Rule)
+Description List
 ---------------------------------------------------------------------- */
 
+dt {
+	font-weight: var(--font-medium);
+}
+
+dd {
+	margin-inline-start: 1.5ch;
+}
+
+dt + dd {
+	margin-block-start: var(--space-xs);
+}
+
+dd + dt {
+	margin-block-start: var(--space-s);
+}
+
+/* ----------------------------------------------------------------------
+Figure and Figure Caption
+---------------------------------------------------------------------- */
+
+figcaption {
+	padding-block-start: 0.5em;
+	font-family: monospace;
+	font-size: var(--size-step-0);
+}
+
 /* ======================================================================
-04. Inline Text Semantics
+05. Inline Text Semantics
 ====================================================================== */
 
 a:not([class]) {
 	color: currentcolor;
+
+	&:hover {
+		text-underline-offset: 0.2lh;
+	}
+
+	/* stylelint-disable-next-line no-descending-specificity -- Intended. */
+	:is(h1, h2, h3, h4) & {
+		text-decoration-thickness: 0.1ex;
+		text-underline-offset: 0.2ex;
+
+		&:hover {
+			text-underline-offset: 0.3ex;
+		}
+	}
 }
 
 small {
@@ -210,18 +276,96 @@ var {
 
 q {
 	font-style: italic;
+
+	blockquote & {
+		font-style: normal;
+	}
 }
 
 /* ======================================================================
-05. Embedded Content
+06. Embedded Content
 ====================================================================== */
 
-/* ======================================================================
-06. Tables
-====================================================================== */
+:is(video, iframe[src*="youtube"], iframe[src*="vimeo"]) {
+	inline-size: 100%;
+	block-size: auto;
+	aspect-ratio: 16 / 9;
+}
+
+/* Don't shrink 'svg' elements in flex contexts */
+svg {
+	flex-shrink: 0;
+}
+
+/*
+Give 'svg' elements with no class an auto width and a limited height.
+It means if a 'svg' doesn’t have a width and height attribute, it won’t be massive.
+*/
+svg:not([class]) {
+	inline-size: auto;
+	block-size: 1lh;
+}
+
+/*
+If an 'svg' has a role of 'img', we treat it as an image of sorts.
+We know there is a width and height because we also target [width][height], so we can safely allow those to take over.
+A light background is a safety mechanism because we have a dark background on this site. If the SVG is predominantly dark, it’ll effectively vanish.
+Finally, we add some padding to frame the 'svg' nicely.
+*/
+svg[role="img"][width][height] {
+	inline-size: revert;
+	block-size: revert;
+	padding: var(--space-xs);
+	background-color: var(--color-light);
+}
 
 /* ======================================================================
-07. Form Controls
+07. Tables
+====================================================================== */
+
+table {
+	inline-size: 100%;
+	border: var(--stroke);
+}
+
+td,
+th {
+	padding-block: var(--space-xs);
+	padding-inline: var(--space-s);
+}
+
+th {
+	font-weight: var(--font-bold);
+	line-height: var(--leading-fine);
+
+	thead & {
+		padding-block: var(--space-s);
+	}
+
+	&:only-of-type {
+		border-inline-end: var(--stroke);
+	}
+
+	&:not(:only-of-type) {
+		border-block-end: var(--stroke);
+	}
+}
+
+:is(th, td) ~ :is(th, td) {
+	border-inline-start: var(--stroke);
+}
+
+tr + tr :is(th, td) {
+	border-block-start: var(--stroke);
+}
+
+caption {
+	margin-block-start: var(--space-s);
+	caption-side: bottom;
+}
+
+/* ======================================================================
+08. Form Controls
 ====================================================================== */
 
 button,
@@ -238,9 +382,26 @@ textarea {
 }
 
 /* ======================================================================
-08. Interactive Elements
+09. Interactive Elements
 ====================================================================== */
 
 /* ======================================================================
-09. Focus Indicators
+10. Focus Indicators
 ====================================================================== */
+
+/*
+Remove the default outline for ':focus' in favour of ':focus-visible'.
+Keyboard focus will be exactly the same, but the difference is,
+when a user taps/clicks on a focusable element, they won’t get an outline showing up.
+*/
+
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline-width: var(--focus-width, 2px);
+	outline-style: var(--focus-style, solid);
+	outline-color: var(--focus-color, currentcolor);
+	outline-offset: var(--focus-offset, 0.2lh);
+}

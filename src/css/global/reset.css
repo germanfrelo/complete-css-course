@@ -8,9 +8,9 @@ Selectors are grouped and sorted based on:
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements
 - https://html.spec.whatwg.org/multipage/#toc-semantics
 
-Table of contents:
-01. Document/Global
-02. Sections
+Table of Contents:
+01. All Elements & Document
+02. Content Sectioning
 03. Grouping Content
 04. Inline Text Semantics
 05. Embedded Content
@@ -21,7 +21,7 @@ Table of contents:
 ====================================================================== */
 
 /* ======================================================================
-01. Document/Global
+01. All Elements & Document
 ====================================================================== */
 
 /*
@@ -59,7 +59,8 @@ html {
 }
 
 /*
-Smooth scrolling, but only when users have no preference for reduced motion, and when focused in the page to prevent unnaturally scrolling when tabbing through the results of a search.
+Smooth scrolling, but only when users have no preference for reduced motion,
+and when focused in the page to prevent unnaturally scrolling when tabbing through the results of a search.
 */
 
 @media (prefers-reduced-motion: no-preference) {
@@ -83,11 +84,12 @@ Smooth scrolling, but only when users have no preference for reduced motion, and
 }
 
 /*
-When scrolling to target elements, a reasonable spacing is added above them to ensure they remain visible, especially with sticky headers or similar.
+Add a reasonable vertical offset above elements when they are targeted by a fragment URL (#anchor)
+to ensure they remain visible, especially when there are fixed/sticky headers or similar.
 */
 
 :target {
-	scroll-margin-block-start: 5em;
+	scroll-margin-block-start: 5lh;
 }
 
 /* ======================================================================
