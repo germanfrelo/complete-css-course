@@ -14,7 +14,7 @@
 	}
 
 	/* Reduce the space of anything that follows a heading (and don't have a class) */
-	:is(h1, h2, h3, h4) + :where(:not([class])) {
+	:is(h1, h2, h3, h4) + :not([class]) {
 		--flow-space: var(--space-m);
 	}
 
