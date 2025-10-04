@@ -1,0 +1,53 @@
+.prose {
+	--flow-space: var(--space-l);
+
+	/* Prevent text from blowing out, especially large headings on small screens */
+	:is(h1, h2, h3) {
+		hyphens: auto;
+		overflow-wrap: anywhere;
+	}
+
+	/* Set short line lengths on some text elements, and wrap it nicely */
+	:is(blockquote, dl, figcaption, li, p) {
+		max-inline-size: 60ch;
+		text-wrap: pretty;
+	}
+
+	/* Reduce the space of anything that follows a heading (and don't have a class) */
+	:is(h1, h2, h3, h4) + :where(:not([class])) {
+		--flow-space: var(--space-m);
+	}
+
+	/* Add more space on and around figures and tables */
+	:is(figure, table),
+	:is(figure, table) + * {
+		--flow-space: var(--space-2xl);
+	}
+
+	/* Add more space to headings on block start */
+	* + :is(h1, h2, h3, h4):not([class]) {
+		--flow-space: var(--space-xl);
+	}
+
+	:is(ul, ol):not([class]) li + li,
+	:is(ul, ol):not([class]) li > :is(ol, ul) {
+		--flow-space: var(--space-xs);
+	}
+
+	hr {
+		--flow-space: var(--space-2xl);
+	}
+
+	:is(img, picture, video) {
+		border: var(--stroke-solid);
+	}
+
+	/* For medium viewports (as defined in src/design-tokens/viewports.json), undo the text wrapping stuff added at the start */
+	/* stylelint-disable-next-line media-query-no-invalid -- Used by Tailwind, defined in viewports.json */
+	@media screen(md) {
+		:is(h1, h2, h3) {
+			hyphens: unset;
+			overflow-wrap: unset;
+		}
+	}
+}
