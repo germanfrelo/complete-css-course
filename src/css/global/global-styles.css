@@ -1,6 +1,490 @@
-/* 
-  Global styles 
+/* ======================================================================
+GLOBAL STYLES
 
-  Low-specificity, global styles that apply to the whole 
-  project: https://cube.fyi/css.html
+Low-specificity, global styles that apply to the whole project.
+
+More info:
+- https://cube.fyi/css.html
+- https://piccalil.li/blog/cube-css/#css
+
+Selectors are grouped and sorted based on:
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements
+- https://html.spec.whatwg.org/multipage/#toc-semantics
+
+Table of Contents:
+01. Resets
+02. Document
+03. Content Sectioning
+04. Grouping Content
+05. Inline Text Semantics
+06. Embedded Content
+07. Tables
+08. Form Controls
+09. Interactive Elements
+10. Focus Indicators
+====================================================================== */
+
+/* ======================================================================
+01. Resets
+====================================================================== */
+
+/* Remove default block margins in favour of better control in authored CSS. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+hr,
+pre,
+blockquote,
+ol,
+ul,
+dl,
+figure {
+	margin-block: 0;
+}
+
+/* ======================================================================
+02. Document
+====================================================================== */
+
+html {
+	/* No styles */
+}
+
+body {
+	font-family: var(--font-base, sans-serif);
+	font-size: var(--size-step-1);
+	line-height: var(--leading-standard);
+	color: var(--color-primary);
+	background-color: var(--color-dark);
+}
+
+::selection {
+	color: var(--color-dark);
+	background: var(--color-light);
+}
+
+/* ======================================================================
+03. Content Sectioning
+====================================================================== */
+
+:is(h1, h2, h3, h4) {
+	line-height: var(--leading-fine);
+	text-wrap: balance;
+}
+
+h1 {
+	max-inline-size: 20ch;
+	font-size: var(--size-step-6);
+}
+
+h2 {
+	max-inline-size: 35ch;
+	font-size: var(--size-step-5);
+}
+
+h3 {
+	max-inline-size: 35ch;
+	font-size: var(--size-step-4);
+}
+
+:is(h4, h5, h6) {
+	font-size: var(--size-step-3);
+}
+
+/* ======================================================================
+04. Grouping Content
+====================================================================== */
+
+/* ----------------------------------------------------------------------
+Thematic Break (Horizontal Rule)
+---------------------------------------------------------------------- */
+
+hr {
+	margin-block: var(--flow-space, var(--space-xl));
+	border-block-start: var(--stroke);
+}
+
+/* ----------------------------------------------------------------------
+Preformatted Text
+---------------------------------------------------------------------- */
+
+pre:has(code) {
+	inline-size: max-content;
+	max-inline-size: 100%;
+}
+
+/* ----------------------------------------------------------------------
+Blockquote
+---------------------------------------------------------------------- */
+
+blockquote {
+	margin-inline: 0;
+	color: var(--color-light);
+
+	footer {
+		margin-block-start: var(--space-s);
+		font-size: var(--size-step-0);
+		color: var(--color-primary);
+	}
+}
+
+/* ----------------------------------------------------------------------
+Ordered & Unordered Lists
+---------------------------------------------------------------------- */
+
+/*
+Remove list-style-type on 'ol' and 'ul' elements with a list role, which suggests default styling will be removed.
+Refs.:
+- https://piccalil.li/blog/a-more-modern-css-reset/
+- https://www.matuzo.at/blog/2023/removing-list-styles-without-affecting-semantics
 */
+:is(ol, ul):where([role="list"]) {
+	list-style-type: "";
+}
+
+ul:not([class]) {
+	padding-inline-start: 1.7ch;
+	list-style-type: disc;
+
+	> li {
+		padding-inline-start: var(--space-xs);
+	}
+}
+
+:is(ol, ul):not([class]) li + * {
+	margin-block-start: var(--flow-space, var(--space-xs));
+}
+
+ul ::marker {
+	font-size: 0.8lh;
+}
+
+ol ::marker {
+	font-size: 1em;
+	font-weight: var(--font-bold);
+}
+
+/* Lists with classes and roles will be out of standard flow, so remove the default spacing */
+[role="list"][class],
+[role="tablist"][class] {
+	padding: 0;
+	margin-block: 0;
+}
+
+/* ----------------------------------------------------------------------
+Description List
+---------------------------------------------------------------------- */
+
+dt {
+	font-weight: var(--font-medium);
+}
+
+dd {
+	margin-inline-start: 1.5ch;
+}
+
+dt + dd {
+	margin-block-start: var(--space-xs);
+}
+
+dd + dt {
+	margin-block-start: var(--space-s);
+}
+
+/* ----------------------------------------------------------------------
+Figure and Figure Caption
+---------------------------------------------------------------------- */
+
+figcaption {
+	padding-block-start: 0.5em;
+	font-family: monospace;
+	font-size: var(--size-step-0);
+}
+
+/* ======================================================================
+05. Inline Text Semantics
+====================================================================== */
+
+a:not([class]) {
+	color: currentcolor;
+
+	&:hover {
+		text-underline-offset: 0.2lh;
+	}
+}
+
+/* stylelint-disable-next-line no-descending-specificity -- Intended. */
+:is(h1, h2, h3, h4) a:not([class]) {
+	text-decoration-thickness: 0.1ex;
+	text-underline-offset: 0.2ex;
+
+	&:hover {
+		text-underline-offset: 0.3ex;
+	}
+}
+
+small {
+	font-size: var(--size-step-0);
+}
+
+ins {
+	padding-inline: 0.3em;
+	color: var(--color-dark);
+	text-decoration-line: none;
+	background-color: var(--color-primary);
+}
+
+:is(code, kbd, samp) {
+	padding-block: 0.2em 0.05em;
+	padding-inline: 0.2em;
+	font-family: var(--font-mono);
+	text-align: start;
+	word-spacing: normal;
+	hyphens: none;
+	word-break: normal;
+	overflow-wrap: normal;
+	box-decoration-break: clone;
+}
+
+/* This is quite a new property, so we want code styles to at least, not be huge or tiny */
+@supports not (font-size-adjust: from-font) {
+	:is(code, kbd, samp) {
+		font-size: 0.8em;
+	}
+}
+
+/* Undo some of the previous styles */
+pre code {
+	padding: 0;
+	background: none;
+	border: none;
+}
+
+kbd {
+	padding-block-end: 0.1em;
+	border: 1px solid;
+}
+
+var {
+	font-style: normal;
+	font-weight: var(--font-medium);
+}
+
+q {
+	font-style: italic;
+
+	blockquote & {
+		font-style: normal;
+	}
+}
+
+/* ======================================================================
+06. Embedded Content
+====================================================================== */
+
+:is(video, iframe[src*="youtube"], iframe[src*="vimeo"]) {
+	inline-size: 100%;
+	block-size: auto;
+	aspect-ratio: 16 / 9;
+}
+
+/* Don't shrink 'svg' elements in flex contexts */
+svg {
+	flex-shrink: 0;
+}
+
+/*
+Give 'svg' elements with no class an auto width and a limited height.
+It means if a 'svg' doesn’t have a width and height attribute, it won’t be massive.
+*/
+svg:not([class]) {
+	inline-size: auto;
+	block-size: 1lh;
+}
+
+/*
+If an 'svg' has a role of 'img', we treat it as an image of sorts.
+We know there is a width and height because we also target [width][height], so we can safely allow those to take over.
+A light background is a safety mechanism because we have a dark background on this site. If the SVG is predominantly dark, it’ll effectively vanish.
+Finally, we add some padding to frame the 'svg' nicely.
+*/
+svg[role="img"][width][height] {
+	inline-size: revert;
+	block-size: revert;
+	padding: var(--space-xs);
+	background-color: var(--color-light);
+}
+
+/* ======================================================================
+07. Tables
+====================================================================== */
+
+table {
+	inline-size: 100%;
+	border: var(--stroke);
+}
+
+td,
+th {
+	padding-block: var(--space-xs);
+	padding-inline: var(--space-s);
+}
+
+th {
+	font-weight: var(--font-bold);
+	line-height: var(--leading-fine);
+}
+
+thead th {
+	padding-block: var(--space-s);
+}
+
+th:only-of-type {
+	border-inline-end: var(--stroke);
+}
+
+th:not(:only-of-type) {
+	border-block-end: var(--stroke);
+}
+
+:is(th, td) ~ :is(th, td) {
+	border-inline-start: var(--stroke);
+}
+
+tr + tr :is(th, td) {
+	border-block-start: var(--stroke);
+}
+
+caption {
+	margin-block-start: var(--space-s);
+	caption-side: bottom;
+}
+
+/* ======================================================================
+08. Form Controls
+====================================================================== */
+
+/* There's a '.flow' composition, but this prevents forms from having to have that applied where markup is harder to control in certain systems. It still uses the '--flow-space' variables though to make managing space easier. */
+form > * + * {
+	margin-block-start: var(--flow-space, 1rem);
+}
+
+fieldset {
+	padding: var(--space-s);
+	border: var(--stroke);
+}
+
+legend {
+	padding-inline: var(--space-xs);
+	font-weight: var(--font-medium);
+}
+
+button,
+input {
+	line-height: 1.1;
+}
+
+input,
+select,
+textarea {
+	accent-color: var(--color-primary);
+}
+
+input:where(:not([type="checkbox"], [type="radio"], [type="color"])),
+select,
+textarea {
+	inline-size: 100%;
+	min-inline-size: max(24px, 15ch);
+	padding-block: 0.5em;
+	padding-inline: 0.8em;
+	color: var(--color-light);
+	background-color: var(--color-dark-glare);
+	border: var(--stroke-solid);
+	border-radius: var(--radius-s);
+}
+
+textarea {
+	display: block;
+	min-block-size: 5lh;
+	resize: both;
+	field-sizing: content;
+}
+
+::placeholder {
+	color: var(--color-mid);
+}
+
+label {
+	font-weight: var(--font-medium);
+	line-height: var(--leading-fine);
+
+	/* Force a line break after the label while allowing it to remain an inline element. This provides a more robust and [defensive CSS](defensivecss.dev) */
+	&::before {
+		white-space: pre;
+		content: "\A";
+	}
+}
+
+/* Usually label wraps checkbox and radio buttons, so we give more layout and text-flow control with flex */
+label:has(input) {
+	display: flex;
+	gap: var(--space-s);
+	align-items: baseline;
+	font-weight: var(--font-normal);
+
+	& + & {
+		--flow-space: var(--space-s-m);
+	}
+
+	/* Slightly adjusts the vertical position of the check/radio */
+	input {
+		transform: translateY(-0.1ex);
+	}
+}
+
+input:disabled {
+	background-color: var(--color-mid);
+}
+
+input:disabled,
+label:has(input:disabled) {
+	cursor: not-allowed;
+}
+
+/* ======================================================================
+09. Interactive Elements
+====================================================================== */
+
+summary {
+	font-weight: var(--font-bold);
+	cursor: pointer;
+}
+
+details[open] summary {
+	margin-block-end: var(--space-s);
+}
+
+/* ======================================================================
+10. Focus Indicators
+====================================================================== */
+
+/*
+Remove the default outline for ':focus' in favour of ':focus-visible'.
+Keyboard focus will be exactly the same, but the difference is,
+when a user taps/clicks on a focusable element, they won’t get an outline showing up.
+*/
+
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline-width: var(--focus-width, 2px);
+	outline-style: var(--focus-style, solid);
+	outline-color: var(--focus-color, currentcolor);
+	outline-offset: var(--focus-offset, 0.2lh);
+}
