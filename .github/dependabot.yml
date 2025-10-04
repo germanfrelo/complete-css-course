@@ -17,3 +17,5 @@ updates:
         patterns:
           - "eslint"
           - "@eslint/js"
+    cooldown:
+      default-days: 7
