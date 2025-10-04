@@ -12,36 +12,37 @@ body:has(.pattern-library) {
 }
 
 .pattern-library svg[role="img"] {
-	width: 100%;
-	height: auto;
+	inline-size: 100%;
+	block-size: auto;
 }
 
 .pattern-library__header {
-	padding: var(--space-s) 0;
-	border-bottom: var(--stroke);
+	padding-block: var(--space-s);
+	padding-inline: 0;
+	border-block-end: var(--stroke);
 }
 
 .pattern-library__header svg {
-	width: 100%;
-	height: auto;
+	inline-size: 100%;
+	block-size: auto;
 }
 
 .pattern-library .sidebar {
 	--sidebar-target-width: 22rem;
 	container-type: inline-size;
-	border-bottom: var(--stroke);
+	border-block-end: var(--stroke);
 }
 
 .pattern-library__sidebar-inner {
-	height: 100%;
-	border-bottom: var(--stroke);
+	block-size: 100%;
+	border-block-end: var(--stroke);
 }
 
 /* Switch border when the sidebar wraps */
 @container (min-width: 75vw) {
 	.pattern-library__sidebar-inner {
-		border-right: var(--stroke);
-		border-bottom: 0;
+		border-block-end: 0;
+		border-inline-end: var(--stroke);
 	}
 }
 
@@ -51,15 +52,15 @@ body:has(.pattern-library) {
 }
 
 .pattern-library__swatch {
-	width: 40px;
+	inline-size: 40px;
 	aspect-ratio: 1/1;
 	border: var(--stroke);
 	border-radius: var(--radius-m);
 }
 
 .pattern-library__preview-frame {
-	width: 100%;
-	min-height: 25rem;
+	inline-size: 100%;
+	min-block-size: 25rem;
 	resize: both;
 	border: var(--stroke);
 }
@@ -105,7 +106,7 @@ body:has(.pattern-library) {
 	display: flex;
 	padding: 0;
 	margin: 0;
-	overflow-x: auto;
+	overflow-inline: auto;
 	overscroll-behavior: contain;
 	list-style: none;
 }
@@ -139,9 +140,9 @@ body:has(.pattern-library) {
 }
 
 .pattern-library .switcher > * {
-	max-width: 100%;
+	max-inline-size: 100%;
 }
 
 .pattern-library .prose {
-	padding-bottom: var(--space-2xl);
+	padding-block-end: var(--space-2xl);
 }
