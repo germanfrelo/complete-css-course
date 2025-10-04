@@ -148,18 +148,6 @@ hr {
 	border-block-start: 2px solid; /* 2 */
 }
 
-/*
-Remove the default 40px indentation from 'figure' and 'menu', which is usually not wanted, in favor of better control in authored CSS.
-*/
-
-figure {
-	margin-inline: 0;
-}
-
-menu {
-	padding-inline-start: 0;
-}
-
 /* ======================================================================
 04. Inline Text Semantics
 ====================================================================== */
@@ -255,10 +243,10 @@ Add padding and border to table cells for a better readability (ref. https://git
 ====================================================================== */
 
 /*
-Remove the default 2px inline margin.
+Remove the default '2px' inline margin.
 */
 
-fieldset {
+:where(fieldset) {
 	margin-inline: 0;
 }
 
@@ -280,7 +268,7 @@ textarea {
 }
 
 /*
-Remove Firefox's default 1px 'margin-block' from 'textarea' for consistency across browsers (bug: https://bugzilla.mozilla.org/show_bug.cgi?id=73817).
+Remove Firefox's default '1px' block margin from 'textarea' for consistency across browsers (bug: https://bugzilla.mozilla.org/show_bug.cgi?id=73817).
 */
 
 :where(textarea) {

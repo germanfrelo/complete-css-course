@@ -215,15 +215,15 @@ a:not([class]) {
 	&:hover {
 		text-underline-offset: 0.2lh;
 	}
+}
 
-	/* stylelint-disable-next-line no-descending-specificity -- Intended. */
-	:is(h1, h2, h3, h4) & {
-		text-decoration-thickness: 0.1ex;
-		text-underline-offset: 0.2ex;
+/* stylelint-disable-next-line no-descending-specificity -- Intended. */
+:is(h1, h2, h3, h4) a:not([class]) {
+	text-decoration-thickness: 0.1ex;
+	text-underline-offset: 0.2ex;
 
-		&:hover {
-			text-underline-offset: 0.3ex;
-		}
+	&:hover {
+		text-underline-offset: 0.3ex;
 	}
 }
 
@@ -337,18 +337,18 @@ th {
 th {
 	font-weight: var(--font-bold);
 	line-height: var(--leading-fine);
+}
 
-	thead & {
-		padding-block: var(--space-s);
-	}
+thead th {
+	padding-block: var(--space-s);
+}
 
-	&:only-of-type {
-		border-inline-end: var(--stroke);
-	}
+th:only-of-type {
+	border-inline-end: var(--stroke);
+}
 
-	&:not(:only-of-type) {
-		border-block-end: var(--stroke);
-	}
+th:not(:only-of-type) {
+	border-block-end: var(--stroke);
 }
 
 :is(th, td) ~ :is(th, td) {
@@ -368,10 +368,43 @@ caption {
 08. Form Controls
 ====================================================================== */
 
+/* There's a '.flow' composition, but this prevents forms from having to have that applied where markup is harder to control in certain systems. It still uses the '--flow-space' variables though to make managing space easier. */
+form > * + * {
+	margin-block-start: var(--flow-space, 1rem);
+}
+
+fieldset {
+	padding: var(--space-s);
+	border: var(--stroke);
+}
+
+legend {
+	padding-inline: var(--space-xs);
+	font-weight: var(--font-medium);
+}
+
 button,
-label,
 input {
 	line-height: 1.1;
+}
+
+input,
+select,
+textarea {
+	accent-color: var(--color-primary);
+}
+
+input:where(:not([type="checkbox"], [type="radio"], [type="color"])),
+select,
+textarea {
+	inline-size: 100%;
+	min-inline-size: max(24px, 15ch);
+	padding-block: 0.5em;
+	padding-inline: 0.8em;
+	color: var(--color-light);
+	background-color: var(--color-dark-glare);
+	border: var(--stroke-solid);
+	border-radius: var(--radius-s);
 }
 
 textarea {
@@ -381,9 +414,59 @@ textarea {
 	field-sizing: content;
 }
 
+::placeholder {
+	color: var(--color-mid);
+}
+
+label {
+	font-weight: var(--font-medium);
+	line-height: var(--leading-fine);
+
+	/* Force a line break after the label while allowing it to remain an inline element. This provides a more robust and [defensive CSS](defensivecss.dev) */
+	&::before {
+		white-space: pre;
+		content: "\A";
+	}
+}
+
+/* Usually label wraps checkbox and radio buttons, so we give more layout and text-flow control with flex */
+label:has(input) {
+	display: flex;
+	gap: var(--space-s);
+	align-items: baseline;
+	font-weight: var(--font-normal);
+
+	& + & {
+		--flow-space: var(--space-s-m);
+	}
+
+	/* Slightly adjusts the vertical position of the check/radio */
+	input {
+		transform: translateY(-0.1ex);
+	}
+}
+
+input:disabled {
+	background-color: var(--color-mid);
+}
+
+input:disabled,
+label:has(input:disabled) {
+	cursor: not-allowed;
+}
+
 /* ======================================================================
 09. Interactive Elements
 ====================================================================== */
+
+summary {
+	font-weight: var(--font-bold);
+	cursor: pointer;
+}
+
+details[open] summary {
+	margin-block-end: var(--space-s);
+}
 
 /* ======================================================================
 10. Focus Indicators
