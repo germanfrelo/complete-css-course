@@ -1,0 +1,6 @@
+# Run this command to always ignore formatting commits in 'git blame':
+# git config blame.ignoreRevsFile .git-blame-ignore-revs
+# Reference: https://docs.github.com/en/repositories/working-with-files/using-files/viewing-and-understanding-files#ignore-commits-in-the-blame-view
+
+# Formated all Nunjucks files
+3ec5c54ea2d176f879e04119197f6559c4e8453a
