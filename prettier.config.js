@@ -5,6 +5,7 @@
  * @type {import("prettier").Config}
  */
 const config = {
+	plugins: ["prettier-plugin-jinja-template"],
 	quoteProps: "consistent",
 	overrides: [
 		{
@@ -23,6 +24,12 @@ const config = {
 			files: ["*.jsonc"],
 			options: {
 				trailingComma: "none",
+			},
+		},
+		{
+			files: ["*.njk"],
+			options: {
+				parser: "jinja-template",
 			},
 		},
 	],
