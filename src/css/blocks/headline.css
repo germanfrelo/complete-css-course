@@ -1,0 +1,12 @@
+.headline {
+	--repel-vertical-alignment: baseline;
+	--gutter: var(--space-s);
+	padding-block-end: var(--space-2xl);
+	border-block-end: var(--stroke);
+}
+
+.headline__heading {
+	font-size: var(--size-step-10);
+	font-weight: var(--font-black);
+	line-height: var(--leading-flat);
+}
