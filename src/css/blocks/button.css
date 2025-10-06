@@ -1,0 +1,56 @@
+.button {
+	--button-bg: var(--color-primary);
+	--button-text: var(--color-dark);
+	--button-x-padding: 2em;
+	--button-y-padding: 1.1em;
+	--button-gutter: 0.5ch;
+	--focus-color: var(--color-primary);
+	position: relative;
+	display: inline-flex;
+	gap: var(--button-gutter);
+	align-items: center;
+	padding-block: var(--button-y-padding);
+	padding-inline: var(--button-x-padding);
+	font-size: var(--size-step-00);
+	font-weight: var(--font-bold);
+	line-height: var(--leading-flat);
+	color: var(--button-text);
+	text-transform: uppercase;
+	letter-spacing: var(--uppercase-kerning);
+	text-decoration-line: none;
+	cursor: pointer;
+	background-color: var(--button-bg);
+	border-width: 0;
+}
+
+.button:has(.corner) {
+	padding-inline-end: calc(var(--button-x-padding) * 2);
+
+	.corner {
+		--corner-size: 100%;
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-end: 0;
+	}
+}
+
+.button:hover {
+	filter: brightness(105%);
+
+	.corner {
+		--corner-offset: 60%;
+	}
+}
+
+.button:active {
+	transform: scale(99%);
+}
+
+/* Variant exceptions */
+
+.button[data-button-variant="secondary"] {
+	--button-bg: var(--color-dark-glare);
+	--button-text: var(--color-primary);
+	--focus-color: var(--color-dark);
+	--corner-secondary-color: var(--color-primary);
+}
