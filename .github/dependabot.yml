@@ -9,12 +9,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    # Dependabot's default labels for npm PRs are "dependencies" and "javascript".
-    # Override them to use "dependencies" and "npm" instead.
+      day: "saturday"
+      time: "09:00"
+      timezone: "Europe/Madrid"
+    # Default open PR limit for version updates is 5.
+    open-pull-requests-limit: 10
+    # Override the default automatic labels ("dependencies" + "javascript") to use "npm" instead of "javascript".
     labels:
       - "dependencies"
       - "npm"
-    open-pull-requests-limit: 10
     ignore:
       - dependency-name: "tailwindcss"
         update-types: ["version-update:semver-major"]
