@@ -1,7 +1,5 @@
-# Dependabot documentation:
-# - https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain
-# - https://docs.github.com/en/code-security/reference/supply-chain-security
-# - https://docs.github.com/en/code-security/tutorials/secure-your-dependencies
+# Dependabot version updates documentation:
+# https://docs.github.com/en/code-security/concepts/supply-chain-security/about-dependabot-version-updates
 
 version: 2
 updates:
