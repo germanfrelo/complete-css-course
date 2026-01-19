@@ -12,6 +12,10 @@ updates:
       timezone: "Europe/Madrid"
     # Default open PR limit for version updates is 5.
     open-pull-requests-limit: 10
+    # Add a prefix and the dependency type ("deps" or "deps-dev") to commit messages and PR titles, e.g. "chore(deps)".
+    commit-message:
+      prefix: "chore"
+      include: "scope"
     # Override the default automatic labels ("dependencies" + "javascript") to use "npm" instead of "javascript".
     labels:
       - "dependencies"
