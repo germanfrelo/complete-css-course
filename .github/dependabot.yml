@@ -1,5 +1,5 @@
 # Dependabot version updates documentation:
-# https://docs.github.com/en/code-security/concepts/supply-chain-security/about-dependabot-version-updates
+# https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference
 
 version: 2
 updates:
@@ -16,13 +16,19 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+    # Wait a few days for new releases to "settle" to avoid fresh, potentially malicious versions.
+    cooldown:
+      default-days: 7
+      semver-patch-days: 3
+      semver-minor-days: 7
+      semver-major-days: 14
+    # Skip Tailwind v4+ (not compatible with current setup); Tailwind will be removed once sugarcube.sh is ready (Q1 2026).
     ignore:
       - dependency-name: "tailwindcss"
         update-types: ["version-update:semver-major"]
+    # Group ESLint core (linter) and @eslint/js (official JS configs) because they're versioned and released in sync.
     groups:
       eslint:
         patterns:
           - "eslint"
           - "@eslint/js"
-    cooldown:
-      default-days: 7
