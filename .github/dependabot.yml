@@ -3,6 +3,18 @@
 
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "09:00"
+      timezone: "Europe/Madrid"
+    # Add a prefix and the dependency type ("deps") to commit messages and PR titles, e.g. "ci(deps)".
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -36,3 +48,4 @@ updates:
         patterns:
           - "eslint"
           - "@eslint/js"
+    
