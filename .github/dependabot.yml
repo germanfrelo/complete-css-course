@@ -14,6 +14,9 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
+    # Override the default automatic labels ("dependencies" + "github_actions").
+    labels:
+      - "dependabot: github-actions"
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -28,10 +31,9 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
-    # Override the default automatic labels ("dependencies" + "javascript") to use "npm" instead of "javascript".
+    # Override the default automatic labels ("dependencies" + "javascript").
     labels:
-      - "dependencies"
-      - "npm"
+      - "dependabot: npm"
     # Wait a few days for new releases to "settle" to avoid fresh, potentially malicious versions.
     cooldown:
       default-days: 7
