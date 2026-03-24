@@ -17,6 +17,9 @@ updates:
     # Override the default automatic labels ("dependencies" + "github_actions").
     labels:
       - "dependabot: github-actions"
+    # Wait a few days for new releases to "settle" to avoid fresh, potentially malicious versions.
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: "npm"
     directory: "/"
