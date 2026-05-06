@@ -11,7 +11,7 @@ The CSS is processed with [PostCSS](https://postcss.org/) and uses [CUBE CSS](ht
 
 ## CSS Folder Structure
 
-```
+```tx
 src
 └── css
     ├── blocks
@@ -47,7 +47,7 @@ npm run patterns:create -- -p my-pattern -n my-pattern -t My\ Pattern
 
 This will create the following folder and file structure:
 
-```
+```tx
 src/
   └── pattern-library/
       └── patterns/
@@ -65,7 +65,7 @@ npm run patterns:create -- -p my-pattern/variants -n my-pattern-primary -t Prima
 
 It'll result in this structure:
 
-```
+```tx
 src/
   └── pattern-library/
       └── patterns/

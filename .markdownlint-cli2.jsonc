@@ -4,7 +4,7 @@
 {
 	"globs": ["**/*.md"], // Lint all .md files in the current directory and its subdirectories
 	"gitignore": true,
-	"ignores": ["LICEN[CS]E*"],
+	"ignores": ["LICEN[CS]E*", "src/pattern-library/patterns/**/*.md"],
 	"config": {
 		"default": true,
 		"code-block-style": {
