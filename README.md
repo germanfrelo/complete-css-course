@@ -1,4 +1,6 @@
-# Complete CSS Starter Files
+# Complete CSS
+
+> Personal working repository for Andy Bell's [Complete CSS](https://piccalil.li/complete-css/) course.
 
 Welcome to Complete CSS!
 
