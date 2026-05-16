@@ -11,7 +11,7 @@ The CSS is processed with [PostCSS](https://postcss.org/) and uses [CUBE CSS](ht
 
 ## CSS Folder Structure
 
-```tx
+```text
 src
 └── css
     ├── blocks
@@ -31,7 +31,7 @@ The CSS folder mostly resembles the CUBE CSS structure and is as follows:
 
 ## JavaScript
 
-The only JavaScript output from this pattern library is *extremely light* user-interface code.
+The only JavaScript output from this pattern library is _extremely light_ user-interface code.
 
 ## Use the pattern generator
 
@@ -47,7 +47,7 @@ npm run patterns:create -- -p my-pattern -n my-pattern -t My\ Pattern
 
 This will create the following folder and file structure:
 
-```tx
+```text
 src/
   └── pattern-library/
       └── patterns/
@@ -65,7 +65,7 @@ npm run patterns:create -- -p my-pattern/variants -n my-pattern-primary -t Prima
 
 It'll result in this structure:
 
-```tx
+```text
 src/
   └── pattern-library/
       └── patterns/
@@ -82,7 +82,7 @@ src/
 
 There are 2 required arguments to pass in—`-p` and `-n`. The rest are optional.
 
-Make sure you add the `--` *after* `npm run patterns:create` so the arguments get passed into the task.
+Make sure you add the `--` _after_ `npm run patterns:create` so the arguments get passed into the task.
 
 Also make sure you escape spaces with a `\`. Alternatively, you can use quotes, such as `-t 'My Title'`.
 
