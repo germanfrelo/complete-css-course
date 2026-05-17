@@ -16,3 +16,6 @@
 
 # style: Reformat codebase
 59142c98c5502e94752bc921b3f77f7f18b0f00d
+
+# style: Reformat Nunjucks file after formatter fix
+59355fcf8f8e280f6ed96af7142a06a6e0f289b2
